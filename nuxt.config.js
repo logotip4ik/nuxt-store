@@ -10,7 +10,8 @@ const dynamicContentPath = 'assets/content' // ? No prepending/appending backsla
 const dynamicRoutes = getDynamicPaths(
   {
     blog: 'blog/*.json',
-    projects: 'projects/*.json'
+    projects: 'projects/*.json',
+    products: 'products/*.json'
   },
   dynamicContentPath
 )
@@ -35,7 +36,7 @@ export default {
       {
         hid: 'description',
         name: 'description',
-        content: SITE_INFO.sitedescription || process.env.npm_package_description || ''
+        content: 'Project to enhance skills with Nuxt and CMS'
       }
     ],
     link: [
