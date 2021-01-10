@@ -1,6 +1,8 @@
 {
-  "title": "Store item 'hat'",
-  "date": "2020-09-08T06:00:00.000Z",
-  "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Orci phasellus egestas tellus rutrum tellus pellentesque eu.",
-  "body": "## some Post\n\n### Some subheader\n\nLorem ipsum dolor websites amet.\n\n> A blockquote from a wise person."
+  "title": "T-Shirt",
+  "date": "2020-08-10T17:16:14Z",
+  "description": "Complete loss of teeth due to periodontal dis, class III",
+  "body": "Complete loss of teeth due to periodontal diseases, class III",
+  "type": "t-shirts",
+  "new": true
 }

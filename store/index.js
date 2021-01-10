@@ -1,8 +1,8 @@
-import { SET_BLOG_POSTS, SET_PROJECT_POSTS, SET_STORE_ITEMS } from './mutations.type'
+import { SET_STORE_ITEMS } from './mutations.type'
+
+const whiteListTypes = ['t-shirts', 'hoodie', 'sweatshirts']
 
 export const state = () => ({
-  blogPosts: [],
-  projectPosts: [],
   storeItems: []
 })
 
@@ -13,6 +13,16 @@ export const mutations = {
 }
 
 export const actions = {
+  getNewProducts({ state }) {
+    return state.storeItems.filter(item => (item.new ? true : false))
+  },
+  getProductsByType({ state }, type) {
+    if (whiteListTypes.includes(type)) {
+      return state.storeItems.filter(item => item.type === type)
+    } else {
+      throw new Error('Page not Found')
+    }
+  },
   getPosts(files) {
     return files.keys().map(key => {
       let res = files(key)

@@ -3,14 +3,13 @@
     <nav :class="{ indexPage: $route.path === '/' }">
       <div class="heading">
         <div class="stripe"></div>
-        <h1>Nuxt CMS Store</h1>
+        <h1><NuxtLink to="/#/">Nuxt CMS Store</NuxtLink></h1>
         <div class="stripe"></div>
       </div>
       <ul>
-        <li><NuxtLink to="#">New</NuxtLink></li>
-        <li><NuxtLink to="#">T-Shirts</NuxtLink></li>
-        <li><NuxtLink to="#">Sweatshirts</NuxtLink></li>
-        <li><NuxtLink to="#">Hoodie</NuxtLink></li>
+        <li v-for="(link, idx) in links" :key="idx">
+          <NuxtLink :to="link.src">{{ link.name }}</NuxtLink>
+        </li>
       </ul>
       <div class="burger" @click="showMenu = !showMenu">
         <div class="line"></div>
@@ -22,10 +21,9 @@
       <div v-show="showMenu" class="menu">
         <div class="close" @click="showMenu = !showMenu"></div>
         <ul>
-          <li><NuxtLink to="#">New</NuxtLink></li>
-          <li><NuxtLink to="#">T-Shirts</NuxtLink></li>
-          <li><NuxtLink to="#">Sweatshirts</NuxtLink></li>
-          <li><NuxtLink to="#">Hoodie</NuxtLink></li>
+          <li v-for="(link, idx) in links" :key="idx" @click="showMenu = false">
+            <NuxtLink :to="link.src">{{ link.name }}</NuxtLink>
+          </li>
         </ul>
       </div>
     </transition>
@@ -36,7 +34,13 @@
 export default {
   name: 'Header',
   data: () => ({
-    showMenu: false
+    showMenu: false,
+    links: [
+      { name: 'New', src: '/category/new' },
+      { name: 'T-Shirts', src: '/category/t-shirts' },
+      { name: 'Sweatshirts', src: '/category/sweatshirts' },
+      { name: 'Hoodie', src: '/category/hoodie' }
+    ]
   })
 }
 </script>
@@ -73,9 +77,10 @@ nav {
       margin-bottom: 0.75rem;
     }
     h1 {
+      a {
+        font-size: 2.5rem;
+      }
       display: inline;
-      font-size: 2.5rem;
-      text-align: center;
     }
   }
 
@@ -88,25 +93,27 @@ nav {
 
     li {
       margin: 0 0.25rem;
-      padding: 0.5rem 1.25rem;
-      position: relative;
       cursor: pointer;
 
-      &::before {
-        content: '';
-        position: absolute;
-        bottom: 0;
-        left: 50%;
-        transform-origin: center center;
-        transform: translateX(-50%);
-        width: 0;
-        height: 2px;
-        background: white;
-        transition: width 300ms ease-in-out;
-      }
+      a {
+        padding: 0.5rem 1.25rem;
+        position: relative;
+        &::before {
+          content: '';
+          position: absolute;
+          bottom: 0;
+          left: 50%;
+          transform-origin: center center;
+          transform: translateX(-50%);
+          width: 0;
+          height: 2px;
+          background: white;
+          transition: width 300ms ease-in-out;
+        }
 
-      &:hover::before {
-        width: 100%;
+        &:hover::before {
+          width: 100%;
+        }
       }
     }
   }
@@ -214,6 +221,8 @@ a {
 @media screen and (max-width: 500px) {
   nav {
     display: flex;
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
 
     h1 {
       font-size: 2rem;

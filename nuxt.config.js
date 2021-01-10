@@ -40,7 +40,13 @@ export default {
         href: 'https://fonts.googleapis.com/css2?family=Nunito:wght@200;400;600;700&display=swap'
       }
     ],
-    script: [{ src: `https://raw.githubusercontent.com/mathiasbynens/CSS.escape/master/css.escape.js`, body: true }]
+    script: [
+      {
+        src: `https://raw.githubusercontent.com/mathiasbynens/CSS.escape/master/css.escape.js`,
+        body: true,
+        type: 'text/javascript'
+      }
+    ]
   },
   generate: {
     routes: dynamicRoutes,
@@ -74,6 +80,10 @@ export default {
   modules: ['@nuxtjs/markdownit', 'css.escape'],
   markdownit: {
     injected: true
+  },
+  pageTransition: {
+    name: 'page',
+    mode: 'out-in'
   },
   /*
    ** Build configuration
