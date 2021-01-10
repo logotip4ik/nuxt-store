@@ -1,16 +1,11 @@
 import glob from 'glob'
 import path from 'path'
-import postcssImport from 'postcss-import'
-import postcssNesting from 'postcss-nesting'
-import postcssPresetEnv from 'postcss-preset-env'
 import * as SITE_INFO from './assets/content/site/info.json'
-import { COLOR_MODE_FALLBACK } from './utils/globals.js'
+// import { COLOR_MODE_FALLBACK } from './utils/globals.js'
 
 const dynamicContentPath = 'assets/content' // ? No prepending/appending backslashes here
 const dynamicRoutes = getDynamicPaths(
   {
-    blog: 'blog/*.json',
-    projects: 'projects/*.json',
     products: 'products/*.json'
   },
   dynamicContentPath
@@ -42,9 +37,10 @@ export default {
     link: [
       {
         rel: 'stylesheet',
-        href: 'https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,400;0,700;1,400&display=swap'
+        href: 'https://fonts.googleapis.com/css2?family=Nunito:wght@200;400;600;700&display=swap'
       }
-    ] // ? Imports the font 'Karla' and is optimized by the netlify plugin 'Subfont'
+    ],
+    script: [{ src: `https://raw.githubusercontent.com/mathiasbynens/CSS.escape/master/css.escape.js`, body: true }]
   },
   generate: {
     routes: dynamicRoutes,
@@ -54,11 +50,11 @@ export default {
   /*
    ** Customize the progress-bar color
    */
-  loading: { color: '#f3f5f4' },
+  loading: { color: 'white' },
   /*
    ** Global CSS
    */
-  css: ['@/assets/css/tailwind.css', '@/assets/css/main.pcss'],
+  // css: ['@/assets/css/tailwind.css', '@/assets/css/main.pcss'],
   /*
    ** Plugins to load before mounting the App
    */
@@ -66,11 +62,16 @@ export default {
   /*
    ** Nuxt.js dev-modules
    */
-  buildModules: ['@nuxtjs/color-mode', '@nuxtjs/tailwindcss', '@nuxtjs/svg', '@nuxtjs/pwa'],
+  buildModules: [
+    // '@nuxtjs/color-mode',
+    // '@nuxtjs/tailwindcss',
+    '@nuxtjs/svg',
+    '@nuxtjs/pwa'
+  ],
   /*
    ** Nuxt.js modules
    */
-  modules: ['@nuxtjs/markdownit', 'nuxt-purgecss'],
+  modules: ['@nuxtjs/markdownit', 'css.escape'],
   markdownit: {
     injected: true
   },
@@ -78,47 +79,47 @@ export default {
    ** Build configuration
    */
   build: {
-    extractCSS: true,
-    postcss: {
-      plugins: {
-        'postcss-import': postcssImport,
-        tailwindcss: path.resolve(__dirname, './tailwind.config.js'),
-        'postcss-nesting': postcssNesting,
-        'postcss-preset-env': postcssPresetEnv({
-          stage: 1,
-          features: {
-            'nesting-rules': false
-          }
-        })
-      }
-    },
+    // extractCSS: true,
+    // postcss: {
+    //   plugins: {
+    //     'postcss-import': postcssImport,
+    //     tailwindcss: path.resolve(__dirname, './tailwind.config.js'),
+    //     'postcss-nesting': postcssNesting,
+    //     'postcss-preset-env': postcssPresetEnv({
+    //       stage: 1,
+    //       features: {
+    //         'nesting-rules': false
+    //       }
+    //     })
+    //   }
+    // },
     /*
      ** You can extend webpack config here
      */
-    extend(config, ctx) {}
+    // extend(config, ctx) {}
   },
   /*
    ** Custom additions configuration
    */
-  tailwindcss: {
-    cssPath: '~/assets/css/tailwind.css',
-    exposeConfig: false // enables `import { theme } from '~tailwind.config'`
-  },
-  purgeCSS: {
-    mode: 'postcss',
-    whitelist: ['dark-mode', 'light-mode', 'btn', 'icon', 'main'],
-    whitelistPatterns: [/^article/, /image$/]
-  },
-  colorMode: {
-    preference: 'system', // default value of $colorMode.preference
-    fallback: COLOR_MODE_FALLBACK, // fallback value if not system preference found
-    componentName: 'ColorScheme',
-    cookie: {
-      options: {
-        sameSite: 'lax'
-      }
-    }
-  },
+  // tailwindcss: {
+  //   cssPath: '~/assets/css/tailwind.css',
+  //   exposeConfig: false // enables `import { theme } from '~tailwind.config'`
+  // },
+  // purgeCSS: {
+  //   mode: 'postcss',
+  //   whitelist: ['dark-mode', 'light-mode', 'btn', 'icon', 'main'],
+  //   whitelistPatterns: [/^article/, /image$/]
+  // },
+  // colorMode: {
+  //   preference: 'dark', // default value of $colorMode.preference
+  //   fallback: COLOR_MODE_FALLBACK, // fallback value if not system preference found
+  //   componentName: 'ColorScheme',
+  //   cookie: {
+  //     options: {
+  //       sameSite: 'lax'
+  //     }
+  //   }
+  // },
   pwa: {
     icon: {
       source: 'static/icon.png',
