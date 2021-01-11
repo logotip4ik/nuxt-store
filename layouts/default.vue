@@ -26,6 +26,7 @@ export default {
 body {
   font-family: 'Nunito', sans-serif;
   min-height: 100vh;
+  background: #fafafa;
 }
 .page-enter-active,
 .page-leave-active {

@@ -5,13 +5,10 @@
 </template>
 <script>
 export default {
-  async asyncData({ params, payload }) {
-    console.log({ params, payload })
-    if (payload) return { product: payload }
-    else
-      return {
-        product: await require(`~/assets/content/products/${params.id}.json`)
-      }
+  async asyncData({ params }) {
+    return {
+      product: await require(`~/assets/content/products/${params.id}.json`)
+    }
   },
   methods: {
     formatDate(dateString) {
