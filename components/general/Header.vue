@@ -47,7 +47,7 @@ export default {
 
 <style lang="scss" scoped>
 nav {
-  background-color: #000000;
+  background-color: #111113;
   color: white;
   padding: 1.25rem 0;
   justify-content: space-between;
@@ -223,8 +223,9 @@ a {
     display: flex;
     padding-left: 0.75rem;
     padding-right: 0.75rem;
+    border-bottom: 1px solid #616161;
 
-    h1 {
+    .heading > h1 > a {
       font-size: 2rem;
     }
 

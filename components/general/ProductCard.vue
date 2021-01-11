@@ -8,9 +8,6 @@
       </div>
     </div>
     <NuxtLink class="card--title" :to="`/product/${slug}`">{{ toTitleCase($slots.default[0].text) }}</NuxtLink>
-    <!-- <div class="card--title">
-      <h2>{{ toTitleCase($slots.default[0].text) }}</h2>
-    </div> -->
   </div>
 </template>
 
@@ -98,7 +95,7 @@ export default {
         border-radius: $borderRadius;
         text-decoration: none;
         font-size: 1.25rem;
-        font-weight: 200;
+        font-weight: 400;
       }
     }
   }

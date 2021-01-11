@@ -1,16 +1,19 @@
 <template>
-  <div>
+  <div class="__main">
     <Header />
     <nuxt />
+    <Footer />
   </div>
 </template>
 
 <script>
-import Header from '~/components/general/Header.vue'
+import Header from '@/components/general/Header'
+import Footer from '@/components/general/Footer'
 
 export default {
   components: {
-    Header
+    Header,
+    Footer
   }
 }
 </script>
@@ -35,5 +38,13 @@ body {
 .page-enter,
 .page-leave-to {
   opacity: 0;
+}
+.__main {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  &::selection {
+    background-color: #636363;
+  }
 }
 </style>
