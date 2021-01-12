@@ -12,19 +12,140 @@
             <div>Structure: {{ product.structure }}</div>
             <div>Density: {{ product.density }}</div>
           </div>
+          <div class="card__content__info--buttons">
+            <button @click="showingSize = !showingSize">Size chart</button>
+            <button @click="showingCare = !showingCare">Care of the thing</button>
+          </div>
+          <div class="card__content__info__size">
+            <h4>Select size:</h4>
+            <div class="card__content__info__size__radios">
+              <div
+                :class="{
+                  'card__content__info__size__radios--item': true,
+                  'card__content__info__size__radios--item--selected': currSize === idx
+                }"
+                v-for="(size, idx) in product.size"
+                :key="idx"
+                @click="currSize = idx"
+              >
+                {{ size }}
+              </div>
+            </div>
+          </div>
+          <div class="card__content__info__counter">
+            <h4>Number:</h4>
+            <div class="card__content__info__counter__wrapper">
+              <span class="minus" @click="minusProduct"><div class="translate-up">&minus;</div></span>
+              <input readonly type="text" v-model="productCount" />
+              <span class="plus" @click="addProduct"><div class="translate-up">&plus;</div></span>
+            </div>
+          </div>
         </div>
       </div>
     </div>
+    <PopUp v-model="showingSize">
+      <h2 style="font-size: 1.65rem; margin-bottom: 1.5rem">How to choose the right size?</h2>
+      <p style="font-weight: 300;margin-bottom: 1rem">
+        Choose your T-shirt / sweatshirt / hoodie and measure with the meter
+      </p>
+      <p style="font-weight: 300;margin-bottom: 1rem">
+        The width on the dimensional grid is indicated by the letter A, measure under the armpits, from seam to seam, as
+        shown by the red line.
+      </p>
+      <p style="font-weight: 300;margin-bottom: 1rem">
+        The length on the dimensional grid is indicated by the letter B, you measure from the neck to the very bottom of
+        the item, as shown by the red line.
+      </p>
+      <p style="font-weight: 300;margin-bottom: 1rem">
+        The length of the sleeves on the dimensional grid is indicated by the letter C, if it is a sweatshirt or hoodie,
+        measure from the neck to the very end of the sleeve, if it is a T-shirt, then as shown by the red line.
+      </p>
+      <p style="font-weight: 300;margin-bottom: 1rem">
+        Next, compare your indicators with our table of sizes, having estimated plus / minus a couple of centimeters and
+        choose the size.
+      </p>
+      <img
+        style="display: block;width: 100%;height: auto; margin-bottom: 1rem"
+        src="https://via.placeholder.com/400"
+        alt="just placeholder image"
+      />
+      <table width="100%" style="background-color: #FCFCFD; margin-bottom: 1rem;">
+        <thead>
+          <tr>
+            <th>(sm)</th>
+            <th>A</th>
+            <th>B</th>
+            <th>C</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="highlight">
+            <td>S</td>
+            <td>48</td>
+            <td>71</td>
+            <td>21</td>
+          </tr>
+          <tr>
+            <td>M</td>
+            <td>50</td>
+            <td>71</td>
+            <td>21</td>
+          </tr>
+          <tr class="highlight">
+            <td>L</td>
+            <td>52</td>
+            <td>72</td>
+            <td>21</td>
+          </tr>
+          <tr>
+            <td>XL</td>
+            <td>54</td>
+            <td>72</td>
+            <td>21</td>
+          </tr>
+          <tr class="highlight">
+            <td>2XL</td>
+            <td>56</td>
+            <td>72</td>
+            <td>21</td>
+          </tr>
+        </tbody>
+      </table>
+    </PopUp>
+    <PopUp v-model="showingCare">
+      <h2 style="margin-bottom: 1rem;font-size: 1.65rem">Standard care rules</h2>
+      <p style="font-weight: 300">
+        Wash in the inverted state, only in a washing machine, up to 40 degrees, do not use tumble dry, dry only on a
+        hanger, without exposure to sunlight on the fabric. Do not iron the print with an iron.
+      </p>
+    </PopUp>
   </div>
 </template>
+
 <script>
+import PopUp from '@/components/PopUp'
+
 export default {
+  data: () => ({
+    showingSize: false,
+    showingCare: false,
+    currSize: 0,
+    productCount: 1
+  }),
   async asyncData({ params }) {
     return {
       product: await require(`~/assets/content/products/${params.id}.json`)
     }
   },
   methods: {
+    addProduct() {
+      if (this.productCount === 99) return
+      this.productCount = this.productCount + 1
+    },
+    minusProduct() {
+      if (this.productCount === 1) return
+      this.productCount = this.productCount - 1
+    },
     toTitleCase(str) {
       return str
         .toLowerCase()
@@ -34,6 +155,9 @@ export default {
         })
         .join(' ')
     }
+  },
+  components: {
+    PopUp
   }
 }
 </script>
@@ -44,14 +168,37 @@ export default {
   width: 100%;
   flex: 1;
   padding: 2rem 1rem;
+  background-color: #ebe6e8;
 
   &--dark {
-    background: #111113;
+    background-color: #111113;
     color: white;
 
     .card__content--price {
       background: black;
       color: white;
+    }
+    .card__content__info {
+      color: white;
+
+      &--buttons button {
+        border-color: #474852 !important;
+        color: #474852 !important;
+        &:hover {
+          background-color: #474852 !important;
+          color: white !important;
+        }
+      }
+
+      &__size__radios--item {
+        color: #797b8c !important;
+        background-color: #474852 !important;
+
+        &--selected {
+          color: black !important;
+          background-color: white !important;
+        }
+      }
     }
   }
 
@@ -83,12 +230,15 @@ export default {
         margin: 2rem auto;
         border-radius: 999px;
         padding: 0.5rem 1rem;
-        background: white;
-        color: black;
+        background: black;
+        color: white;
       }
 
       &__info {
         text-align: center;
+        font-weight: 400;
+        color: #484450;
+
         &--delivery {
           color: #636573;
           font-size: 1.2rem;
@@ -108,24 +258,178 @@ export default {
 
         &--description {
           font-size: 1.1rem;
-          font-weight: 300;
           line-height: 1.75;
           margin-bottom: 3rem;
         }
 
         &--structure {
+          margin-bottom: 3rem;
           div {
             font-size: 1.1rem;
             font-size: 300;
 
             &:first-child {
-              margin-bottom: 0.5rem;
+              margin-bottom: 1rem;
+            }
+          }
+        }
+
+        &--buttons {
+          display: flex;
+          flex-direction: column;
+          justify-content: flex-start;
+          align-items: center;
+          margin-bottom: 3rem;
+
+          button {
+            appearance: none;
+            border-radius: 999px;
+            padding: 0.6rem 1.25rem;
+            border: 2px solid #9c9eaf;
+            background: transparent;
+            font: inherit;
+            font-weight: 400;
+            text-transform: uppercase;
+            color: #9c9eaf;
+            cursor: pointer;
+            transition: color 300ms ease-in-out, background-color 300ms ease-in-out;
+
+            &:first-child {
+              margin-bottom: 1rem;
+            }
+            &:hover {
+              background: #9c9eaf;
+              color: white;
+            }
+          }
+        }
+
+        &__size {
+          margin-bottom: 2rem;
+          & > *:first-child {
+            color: #484450;
+            margin-bottom: 0.5rem;
+          }
+
+          &__radios {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+
+            &--item {
+              $size: 40px;
+              width: $size;
+              height: $size;
+              border-radius: 50%;
+              background-color: white;
+              margin: 0.5rem;
+              color: #d7d5d6;
+              display: grid;
+              place-items: center;
+              cursor: pointer;
+              font-weight: 600;
+              transition: background-color 300ms ease-in-out, color 300ms ease-in-out;
+
+              &--selected {
+                background-color: black;
+                color: white;
+              }
+            }
+          }
+        }
+
+        &__counter {
+          margin-bottom: 2rem;
+
+          & > *:first-child {
+            margin-bottom: 1rem;
+          }
+
+          &__wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            * {
+              height: 50px;
+              width: 50px;
+              display: grid;
+              place-items: center;
+              font-size: 2rem;
+            }
+            input {
+              font: inherit;
+              appearance: none;
+              border: none;
+              outline: none;
+              background: transparent;
+              border: 2px solid black;
+              text-align: center;
+            }
+            span {
+              border-top: 2px solid black;
+              border-bottom: 2px solid black;
+              cursor: pointer;
+
+              .translate-up {
+                transform: translate(-2px, -4px);
+                user-select: none;
+              }
+            }
+            .plus {
+              border-bottom-right-radius: 999px;
+              border-top-right-radius: 999px;
+              border-right: 2px solid black;
+            }
+            .minus {
+              border-bottom-left-radius: 999px;
+              border-top-left-radius: 999px;
+              border-left: 2px solid black;
             }
           }
         }
       }
     }
   }
+}
+
+th,
+td {
+  padding: 0.5rem;
+  border: none;
+  appearance: none;
+}
+
+thead {
+  position: relative;
+  &::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 1px;
+    background-color: #777;
+  }
+}
+
+tr:not(:last-child) {
+  position: relative;
+  &::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 1px;
+    background-color: #999;
+  }
+}
+
+.highlight {
+  position: relative;
+  background-color: #f4f6f8;
 }
 
 @media screen and (max-width: 500px) {

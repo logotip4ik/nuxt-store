@@ -25,11 +25,15 @@ export default {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  vertical-align: baseline;
 }
 body {
   font-family: 'Nunito', sans-serif;
   min-height: 100vh;
   background: #fafafa;
+  ::selection {
+    background-color: #9c9eaf;
+  }
 }
 .page-enter-active,
 .page-leave-active {
@@ -43,8 +47,5 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  &::selection {
-    background-color: #636363;
-  }
 }
 </style>

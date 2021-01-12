@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import ProductCard from '@/components/general/ProductCard'
+import ProductCard from '@/components/ProductCard'
 
 export default {
   async asyncData({ store }) {
@@ -28,7 +28,7 @@ export default {
 <style lang="scss" scoped>
 .container {
   max-width: 1500px;
-  padding: 2rem;
+  padding: 2rem 1rem;
   margin: 1rem auto;
 
   & > h1 {
