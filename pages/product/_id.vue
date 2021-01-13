@@ -4,8 +4,8 @@
       <h1>{{ toTitleCase(product.title) }}</h1>
       <div class="card__content">
         <img :src="product.image" :alt="`image for ${product.title}`" class="card__content--image" />
-        <h2 class="card__content--price">{{ product.price }} RUB</h2>
         <div class="card__content__info">
+          <h2 class="card__content--price">{{ product.price.toLocaleString(undefined) }} RUB</h2>
           <div class="card__content__info--delivery">(Доставка по миру - 850 RUB, по Украине - 50 UAH)</div>
           <div class="card__content__info--description">{{ product.description }}</div>
           <div class="card__content__info--structure">
@@ -24,7 +24,7 @@
                   'card__content__info__size__radios--item': true,
                   'card__content__info__size__radios--item--selected': currSize === idx
                 }"
-                v-for="(size, idx) in product.size"
+                v-for="(size, idx) in product.sizes"
                 :key="idx"
                 @click="currSize = idx"
               >
@@ -32,13 +32,16 @@
               </div>
             </div>
           </div>
-          <div class="card__content__info__counter">
-            <h4>Number:</h4>
-            <div class="card__content__info__counter__wrapper">
-              <span class="minus" @click="minusProduct"><div class="translate-up">&minus;</div></span>
-              <input readonly type="text" v-model="productCount" />
-              <span class="plus" @click="addProduct"><div class="translate-up">&plus;</div></span>
+          <div class="display-flex">
+            <div class="card__content__info__counter">
+              <h4>Number:</h4>
+              <div class="card__content__info__counter__wrapper">
+                <span class="minus" @click="minusProduct"><div class="translate-up">&minus;</div></span>
+                <input readonly type="text" v-model="productCount" />
+                <span class="plus" @click="addProduct"><div class="translate-up">&plus;</div></span>
+              </div>
             </div>
+            <button class="card__content__info__buy" @click="addToBag">Add to Cart &rarr;</button>
           </div>
         </div>
       </div>
@@ -138,6 +141,13 @@ export default {
     }
   },
   methods: {
+    addToBag() {
+      this.$store.dispatch('addItemToBag', {
+        product: this.product,
+        size: this.product.sizes[this.currSize],
+        count: this.productCount
+      })
+    },
     addProduct() {
       if (this.productCount === 99) return
       this.productCount = this.productCount + 1
@@ -172,31 +182,53 @@ export default {
 
   &--dark {
     background-color: #111113;
-    color: white;
+    color: white !important;
 
-    .card__content--price {
-      background: black;
-      color: white;
-    }
-    .card__content__info {
-      color: white;
-
-      &--buttons button {
-        border-color: #474852 !important;
-        color: #474852 !important;
-        &:hover {
-          background-color: #474852 !important;
-          color: white !important;
-        }
+    .card__content {
+      &--price {
+        background: white !important;
+        color: black !important;
       }
+      &__info {
+        color: white !important;
 
-      &__size__radios--item {
-        color: #797b8c !important;
-        background-color: #474852 !important;
+        h4 {
+          color: #636573 !important;
+        }
 
-        &--selected {
+        &--buttons button {
+          border-color: #474852 !important;
+          color: #474852 !important;
+          &:hover {
+            background-color: #474852 !important;
+            color: white !important;
+          }
+        }
+
+        &__size__radios--item {
+          color: #797b8c !important;
+          background-color: #474852 !important;
+
+          &--selected {
+            color: black !important;
+            background-color: white !important;
+          }
+        }
+        &__counter__wrapper {
+          * {
+            border-color: white !important;
+          }
+          input {
+            background-color: white !important;
+          }
+        }
+        &__buy {
+          background: white !important;
           color: black !important;
-          background-color: white !important;
+
+          &::after {
+            border-color: white !important;
+          }
         }
       }
     }
@@ -223,6 +255,7 @@ export default {
       &--image {
         display: block;
         width: 100%;
+        max-width: 605px;
         height: auto;
       }
       &--price {
@@ -238,11 +271,14 @@ export default {
         text-align: center;
         font-weight: 400;
         color: #484450;
+        h4 {
+          font-weight: 600;
+        }
 
         &--delivery {
           color: #636573;
           font-size: 1.2rem;
-          margin-bottom: 5rem;
+          margin-bottom: 4rem;
           position: relative;
 
           &::after {
@@ -250,8 +286,9 @@ export default {
             position: absolute;
             left: 10%;
             right: 10%;
-            bottom: -2.5rem;
-            height: 1px;
+            bottom: -2rem;
+            height: 2px;
+            border-radius: 0.25rem;
             background-color: #636573;
           }
         }
@@ -276,14 +313,15 @@ export default {
 
         &--buttons {
           display: flex;
-          flex-direction: column;
-          justify-content: flex-start;
+          flex-wrap: wrap;
+          justify-content: center;
           align-items: center;
           margin-bottom: 3rem;
 
           button {
             appearance: none;
             border-radius: 999px;
+            margin: 0.5rem;
             padding: 0.6rem 1.25rem;
             border: 2px solid #9c9eaf;
             background: transparent;
@@ -294,9 +332,6 @@ export default {
             cursor: pointer;
             transition: color 300ms ease-in-out, background-color 300ms ease-in-out;
 
-            &:first-child {
-              margin-bottom: 1rem;
-            }
             &:hover {
               background: #9c9eaf;
               color: white;
@@ -356,7 +391,7 @@ export default {
               width: 50px;
               display: grid;
               place-items: center;
-              font-size: 2rem;
+              font-size: 1.5rem;
             }
             input {
               font: inherit;
@@ -373,7 +408,7 @@ export default {
               cursor: pointer;
 
               .translate-up {
-                transform: translate(-2px, -4px);
+                transform: translate(0, -3px);
                 user-select: none;
               }
             }
@@ -387,6 +422,40 @@ export default {
               border-top-left-radius: 999px;
               border-left: 2px solid black;
             }
+          }
+        }
+
+        &__buy {
+          appearance: none;
+          border: none;
+          border-radius: 999px;
+          background-color: black;
+          color: white;
+          text-transform: uppercase;
+          padding: 0.75rem 1.75rem;
+          cursor: pointer;
+          font: inherit;
+          font-weight: 600;
+          position: relative;
+          z-index: 1;
+          max-height: 50px;
+          margin-bottom: 2rem;
+
+          &:hover::after {
+            transform: scaleX(1.075) scaleY(1.3);
+          }
+
+          &::after {
+            content: '';
+            position: absolute;
+            z-index: -1;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border: 2px solid black;
+            border-radius: 999px;
+            transition: transform 300ms ease-in-out;
           }
         }
       }
@@ -430,6 +499,50 @@ tr:not(:last-child) {
 .highlight {
   position: relative;
   background-color: #f4f6f8;
+}
+
+.display-flex {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+@media screen and (min-width: 1200px) {
+  .card__content {
+    display: grid !important;
+    grid-template-columns: 40% auto;
+    align-items: flex-start !important;
+
+    &__info {
+      text-align: left !important;
+      padding-left: 2rem;
+
+      &--delivery::after {
+        left: 0 !important;
+        right: 40% !important;
+      }
+      &--buttons {
+        justify-content: flex-start !important;
+
+        button:first-child {
+          margin-left: 0;
+        }
+      }
+      &__size__radios {
+        justify-content: flex-start !important;
+      }
+      &__buy {
+        margin-left: 2rem;
+        align-self: flex-end;
+      }
+    }
+  }
+  .display-flex {
+    flex-direction: row;
+    justify-content: flex-start;
+  }
 }
 
 @media screen and (max-width: 500px) {

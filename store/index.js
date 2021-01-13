@@ -1,18 +1,30 @@
-import { SET_STORE_ITEMS } from './mutations.type'
+import { SET_STORE_ITEMS, ADD_ITEM_TO_BAG, TOGGLE_BAG } from './mutations.type'
 
 const whiteListTypes = ['t-shirts', 'hoodie', 'sweatshirts']
 
 export const state = () => ({
-  storeItems: []
+  storeItems: [],
+  bagItems: [],
+  showBag: false
 })
 
 export const mutations = {
   [SET_STORE_ITEMS](state, list) {
     state.storeItems = list
+  },
+  [ADD_ITEM_TO_BAG](state, item) {
+    state.bagItems.push(item)
+  },
+  [TOGGLE_BAG](state) {
+    state.showBag = !state.showBag
   }
 }
 
 export const actions = {
+  addItemToBag({ commit }, { product, count, size }) {
+    commit(ADD_ITEM_TO_BAG, { ...product, count, size })
+    commit(TOGGLE_BAG)
+  },
   getNewProducts({ state }) {
     return state.storeItems.filter(item => (item.new ? true : false))
   },

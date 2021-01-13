@@ -1,3 +1,3 @@
-export const SET_BLOG_POSTS = 'setBlogPosts'
-export const SET_PROJECT_POSTS = 'setProjectPosts'
 export const SET_STORE_ITEMS = 'setItems'
+export const ADD_ITEM_TO_BAG = 'addItemToBag'
+export const TOGGLE_BAG = 'toggleBag'

@@ -11,6 +11,21 @@
           <NuxtLink :to="link.src">{{ link.name }}</NuxtLink>
         </li>
       </ul>
+      <div class="svg--wrapper">
+        <svg
+          version="1.1"
+          xmlns="http://www.w3.org/2000/svg"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          viewBox="0 0 2138.327 2138.327"
+          xml:space="preserve"
+          @click="toggleBag"
+        >
+          <path
+            style="fill:currentColor;"
+            d="M1032.925,1852.654c0,98.076-79.506,177.583-177.583,177.583S677.76,1950.73,677.76,1852.654  c0-98.076,79.506-177.583,177.583-177.583S1032.925,1754.578,1032.925,1852.654z M1574.387,1675.072  c-98.076,0-177.583,79.507-177.583,177.583c0,98.076,79.507,177.583,177.583,177.583c98.076,0,177.583-79.507,177.583-177.583  C1751.969,1754.578,1672.463,1675.072,1574.387,1675.072z M2125.619,841.423l-218.512,649.464c0,0-18.088,96.383-110.247,96.383  s-993.407,0-1103.389,0s-114.604-120.809-114.604-120.809S461.624,596.637,455.814,544.088s-73.013-91.498-73.013-91.498  L93.651,317.522c-158.306-82.784-86.349-240.298,0-204.121c366.652,172.961,536.973,258.122,547.932,326.25  c11.091,68.26,30.367,232.64,30.367,232.64v1.056c2.245-0.66,3.829-1.056,3.829-1.056s1124.382,0,1351.477,0  C2190.447,672.291,2125.619,841.688,2125.619,841.423z M1809.535,1203.058l-2.245,0.132H737.57L759.619,1378h997.896  L1809.535,1203.058z M1913.708,850.534H693.339l23.502,186.825c234.092,0,919.601,0,1141.678,0L1913.708,850.534z"
+          />
+        </svg>
+      </div>
       <div class="burger" @click="showMenu = !showMenu">
         <div class="line"></div>
         <div class="line"></div>
@@ -27,10 +42,15 @@
         </ul>
       </div>
     </transition>
+    <Bag v-model="showBag"></Bag>
   </div>
 </template>
 
 <script>
+import { mapMutations } from 'vuex'
+
+import Bag from '@/components/Bag'
+
 export default {
   name: 'Header',
   data: () => ({
@@ -41,7 +61,23 @@ export default {
       { name: 'Sweatshirts', src: '/category/sweatshirts' },
       { name: 'Hoodie', src: '/category/hoodie' }
     ]
-  })
+  }),
+  computed: {
+    showBag: {
+      get() {
+        return this.$store.state.showBag
+      },
+      set() {
+        this.toggleBag()
+      }
+    }
+  },
+  methods: {
+    ...mapMutations(['toggleBag'])
+  },
+  components: {
+    Bag
+  }
 }
 </script>
 
@@ -84,6 +120,17 @@ nav {
     }
   }
 
+  .svg--wrapper {
+    position: absolute;
+    top: 77px;
+    right: 3vw;
+    svg {
+      width: 30px;
+      height: auto;
+      // margin-right: 2rem;
+    }
+  }
+
   ul {
     list-style-type: none;
     display: flex;
@@ -122,6 +169,7 @@ nav {
 .burger {
   position: relative;
   margin: 1rem 0;
+  margin-left: 1.5rem;
   height: auto;
   min-height: 20px;
   max-height: 30px;
@@ -226,11 +274,14 @@ a {
     border-bottom: 1px solid #616161;
 
     .heading > h1 > a {
-      font-size: 2rem;
+      font-size: 1.5rem;
     }
 
     & > ul {
       display: none;
+    }
+    .svg--wrapper {
+      position: initial;
     }
   }
   .burger {
