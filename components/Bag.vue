@@ -10,17 +10,34 @@
           </svg>
           Continue shopping
         </button>
-        <div class="bag--content">
-          <pre>
-            {{ products }}
-          </pre>
+        <div :class="{ bag__purchase: true, 'bag__purchase--pb': products.length === 0 }">
+          <div class="bag__purchase__header">
+            My purchases
+          </div>
+          <div class="bag__purchase__container">
+            <ProductCardBag
+              v-for="product in products"
+              :key="product.slug"
+              :image="product.image"
+              :sizes="product.sizes"
+              :size="product.size"
+              :count="product.count"
+              :price="product.price"
+              :slug="product.slug"
+            >
+              {{ product.title }}
+            </ProductCardBag>
+          </div>
         </div>
+        <div class="bag--content"></div>
       </div>
     </div>
   </transition>
 </template>
 
 <script>
+import ProductCardBag from './ProductCardBag'
+
 export default {
   name: 'Bag',
   computed: {
@@ -33,6 +50,9 @@ export default {
       type: Boolean,
       required: true
     }
+  },
+  components: {
+    ProductCardBag
   }
 }
 </script>
@@ -44,7 +64,7 @@ export default {
   top: 0;
   width: 100%;
   height: 100%;
-  z-index: 10;
+  z-index: 999;
   display: flex;
   justify-content: flex-end;
   background: linear-gradient(to right, rgba($color: black, $alpha: 0.5), rgba($color: black, $alpha: 0.8));
@@ -85,12 +105,43 @@ export default {
         transform: translateY(-1px);
       }
     }
+
+    &__purchase {
+      padding: 1rem;
+      border-bottom: 2px solid #484848;
+
+      &--pb {
+        padding-bottom: 3rem;
+      }
+
+      &__header {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 2rem;
+        padding: 1.5rem 0;
+        &::after {
+          content: '';
+          width: 30%;
+          height: 2px;
+          background-color: black;
+          margin-left: 1.25rem;
+          transform: translateY(2px);
+        }
+      }
+      &__container {
+        div:not(:last-child) {
+          border-bottom: 1px solid rgb(160, 160, 160);
+          margin-bottom: 1rem;
+        }
+      }
+    }
   }
 }
 
 .slide-enter-active,
 .slide-leave-active {
-  transition: width 500ms ease-in-out;
+  transition: width 700ms ease-in-out;
   overflow: hidden;
 }
 

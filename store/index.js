@@ -1,4 +1,12 @@
-import { SET_STORE_ITEMS, ADD_ITEM_TO_BAG, TOGGLE_BAG } from './mutations.type'
+import {
+  SET_STORE_ITEMS,
+  ADD_ITEM_TO_BAG,
+  TOGGLE_BAG,
+  REMOVE_ITEM_FROM_BAG,
+  ADD_COUNT_TO_ITEM_BAG,
+  MINUS_COUNT_TO_ITEM_BAG,
+  CHANGE_SIZE_TO_ITEM_BAG
+} from './mutations.type'
 
 const whiteListTypes = ['t-shirts', 'hoodie', 'sweatshirts']
 
@@ -12,17 +20,51 @@ export const mutations = {
   [SET_STORE_ITEMS](state, list) {
     state.storeItems = list
   },
-  [ADD_ITEM_TO_BAG](state, item) {
-    state.bagItems.push(item)
+  [ADD_ITEM_TO_BAG](state, itemToAdd) {
+    for (let i = 0; i < state.bagItems.length; i++) {
+      const item = state.bagItems[i]
+      if (item.slug === itemToAdd.slug) {
+        item.count = item.count + 1
+        return
+      }
+    }
+    state.bagItems.push(itemToAdd)
+  },
+  [ADD_COUNT_TO_ITEM_BAG](state, slug) {
+    for (let i = 0; i < state.bagItems.length; i++) {
+      const item = state.bagItems[i]
+      if (item.slug === slug && item.count !== 99) {
+        item.count = item.count + 1
+      }
+    }
+  },
+  [MINUS_COUNT_TO_ITEM_BAG](state, slug) {
+    for (let i = 0; i < state.bagItems.length; i++) {
+      const item = state.bagItems[i]
+      if (item.slug === slug && item.count !== 1) {
+        item.count = item.count - 1
+      }
+    }
+  },
+  [CHANGE_SIZE_TO_ITEM_BAG](state, { slug, size }) {
+    for (let i = 0; i < state.bagItems.length; i++) {
+      const item = state.bagItems[i]
+      if (item.slug === slug) {
+        item.size = size
+      }
+    }
   },
   [TOGGLE_BAG](state) {
     state.showBag = !state.showBag
+  },
+  [REMOVE_ITEM_FROM_BAG](state, slug) {
+    state.bagItems = state.bagItems.filter(item => item.slug === slug)
   }
 }
 
 export const actions = {
-  addItemToBag({ commit }, { product, count, size }) {
-    commit(ADD_ITEM_TO_BAG, { ...product, count, size })
+  addItemToBag({ commit }, { product, count, size, slug }) {
+    commit(ADD_ITEM_TO_BAG, { ...product, count, size, slug })
     commit(TOGGLE_BAG)
   },
   getNewProducts({ state }) {

@@ -137,13 +137,16 @@ export default {
   }),
   async asyncData({ params }) {
     return {
-      product: await require(`~/assets/content/products/${params.id}.json`)
+      product: await require(`~/assets/content/products/${params.id}.json`),
+      slug: params.id
     }
   },
   methods: {
     addToBag() {
+      console.log(this.slug)
       this.$store.dispatch('addItemToBag', {
         product: this.product,
+        slug: this.slug,
         size: this.product.sizes[this.currSize],
         count: this.productCount
       })

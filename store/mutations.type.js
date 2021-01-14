@@ -1,3 +1,7 @@
 export const SET_STORE_ITEMS = 'setItems'
 export const ADD_ITEM_TO_BAG = 'addItemToBag'
+export const CHANGE_SIZE_TO_ITEM_BAG = 'changeSizeToBagProduct'
+export const ADD_COUNT_TO_ITEM_BAG = 'addCountToBagProduct'
+export const MINUS_COUNT_TO_ITEM_BAG = 'minusCountToBagProduct'
+export const REMOVE_ITEM_FROM_BAG = 'removeItemFromBag'
 export const TOGGLE_BAG = 'toggleBag'
