@@ -14,10 +14,7 @@ const dynamicRoutes = getDynamicPaths(
 export default {
   // ? The env Property: https://nuxtjs.org/api/configuration-env/
   env: {
-    url:
-      process.env.NODE_ENV === 'production'
-        ? process.env.URL || 'http://createADotEnvFileAndSetURL'
-        : 'http://localhost:3000',
+    url: process.env.NODE_ENV === 'production' ? 'https://nuxt-store-cms.netlify.app' : 'http://localhost:3000',
     lang: SITE_INFO.sitelang || 'en-US'
   },
   /*
@@ -43,8 +40,7 @@ export default {
     script: [
       {
         src: `https://raw.githubusercontent.com/mathiasbynens/CSS.escape/master/css.escape.js`,
-        body: true,
-        type: 'text/javascript'
+        body: true
       }
     ]
   },
