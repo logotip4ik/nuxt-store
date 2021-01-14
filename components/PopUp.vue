@@ -43,6 +43,7 @@ export default {
   z-index: 999;
 }
 .popup {
+  scrollbar-width: none;
   overflow-y: auto;
   width: 90vw;
   max-width: 600px;

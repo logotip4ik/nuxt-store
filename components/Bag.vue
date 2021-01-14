@@ -1,5 +1,5 @@
 <template>
-  <transition name="slide" mode="out-in">
+  <transition name="slide-bag" :duration="500">
     <div class="bag--wrapper" v-show="value">
       <div class="bag">
         <button @click="$emit('input', false)">
@@ -235,14 +235,12 @@ export default {
   }
 }
 
-.slide-enter-active,
-.slide-leave-active {
-  transition: width 700ms ease-in-out;
-  overflow: hidden;
+.slide-bag-enter-active,
+.slide-bag-leave-active {
+  transition: width 0.5s ease-in-out;
 }
-
-.slide-enter-from,
-.slide-leave-to {
+.slide-bag-enter,
+.slide-bag-leave-to {
   width: 0;
 }
 
