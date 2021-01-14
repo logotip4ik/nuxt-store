@@ -2,7 +2,7 @@
   <div class="card">
     <div class="card__image">
       <img :src="image" :alt="`${$slots.default[0].text} image`" />
-      <button @click="removeItemFromBag">
+      <button @click="removeItemFromBag(slug)">
         <svg viewBox="0 0 78 75" fill="none" xmlns="http://www.w3.org/2000/svg">
           <line x1="5.41242" y1="1.87689" x2="76.1231" y2="72.5876" stroke="currentColor" stroke-width="5" />
           <line x1="1.87689" y1="72.5876" x2="72.5876" y2="1.8769" stroke="currentColor" stroke-width="5" />

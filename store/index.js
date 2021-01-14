@@ -58,7 +58,7 @@ export const mutations = {
     state.showBag = !state.showBag
   },
   [REMOVE_ITEM_FROM_BAG](state, slug) {
-    state.bagItems = state.bagItems.filter(item => item.slug === slug)
+    state.bagItems = state.bagItems.filter(item => item.slug !== slug)
   }
 }
 

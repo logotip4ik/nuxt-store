@@ -29,7 +29,18 @@
             </ProductCardBag>
           </div>
         </div>
-        <div class="bag--content"></div>
+        <div class="bag__summery">
+          <div class="bag__summery__promo">
+            <h4>Promocode</h4>
+            <div class="input-wrapper">
+              <input type="text" />
+              <button>apply</button>
+            </div>
+          </div>
+          <div class="bag__summery__total">
+            Total: <span>{{ summeryCost }} RUB</span>
+          </div>
+        </div>
       </div>
     </div>
   </transition>
@@ -43,6 +54,9 @@ export default {
   computed: {
     products() {
       return this.$store.state.bagItems
+    },
+    summeryCost() {
+      return this.products.reduce((acc, item) => acc + item.price * item.count, 0).toLocaleString()
     }
   },
   props: {
@@ -74,6 +88,7 @@ export default {
     width: 100vw;
     overflow-y: auto;
     background: white;
+    scrollbar-width: none;
 
     & > button {
       background: transparent;
@@ -133,6 +148,87 @@ export default {
         div:not(:last-child) {
           border-bottom: 1px solid rgb(160, 160, 160);
           margin-bottom: 1rem;
+        }
+      }
+    }
+
+    &__summery {
+      padding: 1.75rem;
+
+      &__promo {
+        padding: 1rem;
+        padding-bottom: 2rem;
+        position: relative;
+        margin-bottom: 2rem;
+
+        &::after {
+          content: '';
+          position: absolute;
+          left: 50%;
+          transform: translateX(-50%);
+          bottom: 0;
+          width: 90%;
+          height: 2px;
+          background-color: rgb(209, 209, 209);
+        }
+
+        & > *:first-child {
+          color: #999;
+          font-size: 0.75rem;
+          text-transform: uppercase;
+          margin-bottom: 0.5rem;
+        }
+
+        .input-wrapper {
+          width: 100%;
+          height: 35px;
+          position: relative;
+
+          input {
+            width: 100%;
+            height: 100%;
+            text-align: left;
+            padding: 0.5rem 0.75rem;
+            padding-right: 5.5rem;
+            appearance: none;
+            border: none;
+            border-radius: 999px;
+            outline: none;
+            background-color: #f4f6f8;
+            font: inherit;
+          }
+
+          button {
+            position: absolute;
+            top: 0;
+            right: 0;
+            appearance: none;
+            border: none;
+            border-radius: 999px;
+            background-color: black;
+            color: white;
+            height: 100%;
+            text-transform: uppercase;
+            font: inherit;
+            font-size: 1.1rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            padding: 0 0.75rem;
+          }
+        }
+      }
+
+      &__total {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        text-transform: uppercase;
+        color: rgb(163, 163, 163);
+
+        span {
+          color: black;
+          font-size: 1.5rem;
+          font-weight: 600;
         }
       }
     }

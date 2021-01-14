@@ -3,7 +3,9 @@
     <div class="card">
       <h1>{{ toTitleCase(product.title) }}</h1>
       <div class="card__content">
-        <img :src="product.image" :alt="`image for ${product.title}`" class="card__content--image" />
+        <div class="image-wrapper">
+          <img :src="product.image" :alt="`image for ${product.title}`" class="card__content--image" />
+        </div>
         <div class="card__content__info">
           <h2 class="card__content--price">{{ product.price.toLocaleString(undefined) }} RUB</h2>
           <div class="card__content__info--delivery">(Доставка по миру - 850 RUB, по Украине - 50 UAH)</div>
@@ -143,7 +145,6 @@ export default {
   },
   methods: {
     addToBag() {
-      console.log(this.slug)
       this.$store.dispatch('addItemToBag', {
         product: this.product,
         slug: this.slug,
@@ -255,10 +256,16 @@ export default {
       justify-content: flex-start;
       align-items: center;
 
+      .image-wrapper {
+        max-width: 605px;
+        position: relative;
+        z-index: 1;
+        box-shadow: 0 0 1500000px -150px rgba($color: white, $alpha: 1);
+      }
+
       &--image {
         display: block;
         width: 100%;
-        max-width: 605px;
         height: auto;
       }
       &--price {

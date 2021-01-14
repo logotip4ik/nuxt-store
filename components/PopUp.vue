@@ -40,6 +40,7 @@ export default {
   justify-content: center;
   align-items: center;
   pointer-events: none;
+  z-index: 999;
 }
 .popup {
   overflow-y: auto;
