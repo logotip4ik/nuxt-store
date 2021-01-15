@@ -1,0 +1,18 @@
+{
+  "new": true,
+  "density": "320 g/m²",
+  "price": 2050,
+  "slug": 16,
+  "sizes": [
+    "S",
+    "M",
+    "L",
+    "XL"
+  ],
+  "structure": "55% cotton, 45% polyester",
+  "title": "Swaetshirt",
+  "type": "sweatshirts",
+  "image": "https://via.placeholder.com/400",
+  "description": "Just a test product. Just testing netlify cms",
+  "black": false
+}
