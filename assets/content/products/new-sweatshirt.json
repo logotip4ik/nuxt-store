@@ -1,0 +1,17 @@
+{
+  "new": true,
+  "density": "320 g/m²",
+  "price": 2400,
+  "sizes": [
+    "S",
+    "M",
+    "L",
+    "XL"
+  ],
+  "structure": "55% cotton, 45% polyester",
+  "title": "New Sweatshirt ",
+  "type": "sweatshirts",
+  "image": "https://e7.pngegg.com/pngimages/959/753/png-clipart-t-shirt-hoodie-clothing-crew-neck-t-shirt-tshirt-white.png",
+  "description": "Just new sweatshirt, added from Netlify CMS. So as you might think it is just test",
+  "black": false
+}
