@@ -12,6 +12,7 @@ const dynamicRoutes = getDynamicPaths(
 )
 
 export default {
+  target: 'static',
   // ? The env Property: https://nuxtjs.org/api/configuration-env/
   env: {
     url: process.env.NODE_ENV === 'production' ? 'https://nuxt-store-cms.netlify.app' : 'http://192.168.88.218:3000',
