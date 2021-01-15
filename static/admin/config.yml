@@ -37,14 +37,15 @@ collections:
           # - { label: Site Email, name: siteemail, widget: string, required: false }
   - name: 'products'
     label: 'Products'
-    # identifier_field: name
+    # identifier_field: slug
     folder: 'assets/content/products'
     create: true
     format: 'json'
-    slug: '{{slug}}'
+    slug: '{{fields.slug}}'
     # editor:
     #   preview: true
     fields:
+      - { label: 'Slug', name: 'slug', widget: 'number' }
       - { label: 'Title', name: 'title', widget: 'string' }
       - { label: 'Description', name: 'description', widget: 'string' }
       - {
