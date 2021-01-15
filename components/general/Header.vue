@@ -72,8 +72,14 @@ export default {
       }
     }
   },
+  mounted() {
+    const bag = localStorage.getItem('_nuxtBag')
+    if (bag) {
+      this.setBag(JSON.parse(bag))
+    }
+  },
   methods: {
-    ...mapMutations(['toggleBag'])
+    ...mapMutations(['toggleBag', 'setBag'])
   },
   components: {
     Bag

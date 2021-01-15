@@ -59,6 +59,15 @@ export default {
       return this.products.reduce((acc, item) => acc + item.price * item.count, 0).toLocaleString()
     }
   },
+  watch: {
+    products: {
+      get(val) {
+        console.log(val)
+        localStorage.setItem('_nuxtBag', JSON.stringify(val))
+      },
+      deep: true
+    }
+  },
   props: {
     value: {
       type: Boolean,
@@ -237,11 +246,11 @@ export default {
 
 .slide-bag-enter-active,
 .slide-bag-leave-active {
-  transition: width 0.5s ease-in-out;
+  transition: transform 400ms ease-in-out;
 }
 .slide-bag-enter,
 .slide-bag-leave-to {
-  width: 0;
+  transform: translateX(100%);
 }
 
 @media screen and (min-width: 420px) {

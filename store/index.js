@@ -59,10 +59,22 @@ export const mutations = {
   },
   [REMOVE_ITEM_FROM_BAG](state, slug) {
     state.bagItems = state.bagItems.filter(item => item.slug !== slug)
+  },
+  setBag(state, bag) {
+    console.log({ bag, state })
+    // TODO: add items to bag
+    // BUG: This don't work
+    // state.bagItems.push(...bag)
+    // console.log(state.bagItems)
   }
 }
 
 export const actions = {
+  setBag({ commit }, newBag) {
+    if (typeof newBag === 'object') {
+      commit('setBag', newBag)
+    }
+  },
   addItemToBag({ commit }, { product, count, size, slug }) {
     commit(ADD_ITEM_TO_BAG, { ...product, count, size, slug })
     commit(TOGGLE_BAG)
