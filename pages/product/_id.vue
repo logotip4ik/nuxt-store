@@ -410,6 +410,7 @@ export default {
               outline: none;
               background: transparent;
               border: 2px solid black;
+              border-radius: 0;
               text-align: center;
             }
             span {
