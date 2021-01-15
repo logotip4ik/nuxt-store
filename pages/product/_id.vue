@@ -8,7 +8,7 @@
         </div>
         <div class="card__content__info">
           <h2 class="card__content--price">{{ product.price.toLocaleString(undefined) }} RUB</h2>
-          <div class="card__content__info--delivery">(Доставка по миру - 850 RUB, по Украине - 50 UAH)</div>
+          <div class="card__content__info--delivery">(Worldwide delivery - 850 RUB, Ukraine - 50 UAH)</div>
           <div class="card__content__info--description">{{ product.description }}</div>
           <div class="card__content__info--structure">
             <div>Structure: {{ product.structure }}</div>
