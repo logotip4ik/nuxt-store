@@ -31,7 +31,7 @@ main {
     .bg-image {
       width: 100%;
       height: 75vh;
-      min-height: 600px;
+      min-height: 500px;
       background: linear-gradient(rgba($color: #000000, $alpha: 0.6), rgba($color: #000000, $alpha: 0.3)),
         url('https://source.unsplash.com/aL7SA1ASVdQ/1600x900');
       background-repeat: no-repeat;
