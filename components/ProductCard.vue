@@ -81,8 +81,9 @@ export default {
       right: 0;
       bottom: 0;
       background-color: rgba($color: #000000, $alpha: 0.5);
-      display: grid;
-      place-items: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
       opacity: 0;
       pointer-events: none;
       transition: opacity $transitionDuration ease-in-out;

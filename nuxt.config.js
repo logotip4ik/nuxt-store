@@ -14,7 +14,7 @@ const dynamicRoutes = getDynamicPaths(
 export default {
   // ? The env Property: https://nuxtjs.org/api/configuration-env/
   env: {
-    url: process.env.NODE_ENV === 'production' ? 'https://nuxt-store-cms.netlify.app' : 'http://localhost:3000',
+    url: process.env.NODE_ENV === 'production' ? 'https://nuxt-store-cms.netlify.app' : 'http://192.168.88.218:3000',
     lang: SITE_INFO.sitelang || 'en-US'
   },
   /*
@@ -33,14 +33,19 @@ export default {
     ],
     link: [
       {
+        rel: 'preconnect',
+        href: 'https://fonts.gstatic.com'
+      },
+      {
         rel: 'stylesheet',
-        href: 'https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;600;700&display=swap'
+        href: 'https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;600;&display=swap'
       }
     ],
     script: [
       {
-        src: `https://raw.githubusercontent.com/mathiasbynens/CSS.escape/master/css.escape.js`,
-        body: true
+        src: `https://cdn.jsdelivr.net/gh/mathiasbynens/CSS.escape/css.escape.js`,
+        body: true,
+        type: 'text/javascript'
       }
     ]
   },

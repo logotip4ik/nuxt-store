@@ -110,6 +110,7 @@ export default {
     button {
       $button-size: 23px;
       color: rgba($color: #000000, $alpha: 0.5);
+      background: white;
       width: $button-size;
       height: $button-size;
       position: absolute;
