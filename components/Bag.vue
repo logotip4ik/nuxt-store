@@ -1,7 +1,7 @@
 <template>
-  <transition name="slide-bag" :duration="500">
-    <div class="bag--wrapper" v-show="value">
-      <div class="bag">
+  <div class="bag--wrapper">
+    <transition name="slide-bag" :duration="500">
+      <div class="bag" v-show="value">
         <button @click="$emit('input', false)">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 17 32" class="close-icon">
             <path
@@ -42,8 +42,11 @@
           </div>
         </div>
       </div>
-    </div>
-  </transition>
+    </transition>
+    <transition name="fade">
+      <div class="overlay" v-show="value"></div>
+    </transition>
+  </div>
 </template>
 
 <script>
@@ -90,7 +93,7 @@ export default {
   z-index: 999;
   display: flex;
   justify-content: flex-end;
-  background: linear-gradient(to right, rgba($color: black, $alpha: 0.5), rgba($color: black, $alpha: 0.8));
+  pointer-events: none;
 
   .bag {
     height: 100%;
@@ -98,6 +101,7 @@ export default {
     overflow-y: auto;
     background: white;
     scrollbar-width: none;
+    pointer-events: auto;
 
     & > button {
       background: transparent;
@@ -242,6 +246,15 @@ export default {
       }
     }
   }
+  .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background: linear-gradient(to right, rgba($color: black, $alpha: 0.5), rgba($color: black, $alpha: 0.8));
+  }
 }
 
 .slide-bag-enter-active,
@@ -251,6 +264,14 @@ export default {
 .slide-bag-enter,
 .slide-bag-leave-to {
   transform: translateX(100%);
+}
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 500ms ease-in-out;
+}
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
 }
 
 @media screen and (min-width: 420px) {
