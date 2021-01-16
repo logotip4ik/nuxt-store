@@ -281,6 +281,7 @@ export default {
         text-align: center;
         font-weight: 400;
         color: #484450;
+        min-width: 50vw;
         h4 {
           font-weight: 600;
         }
