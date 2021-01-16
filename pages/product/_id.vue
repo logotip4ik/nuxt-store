@@ -137,14 +137,23 @@ export default {
     currSize: 0,
     productCount: 1
   }),
-  async asyncData({ params }) {
+  async asyncData({ params, error }) {
+    let product
+    try {
+      product = await require(`~/assets/content/products/${params.id}.json`)
+    } catch (err) {
+      error({
+        statusCode: 404,
+        message: 'This product was Not Found'
+      })
+    }
+
     return {
-      product: await require(`~/assets/content/products/${params.id}.json`),
+      product,
       slug: params.id
     }
   },
   methods: {
-    // ...mapActions(['addItemToBag'])
     addToBag() {
       const item = {
         ...this.product,
