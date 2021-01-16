@@ -40,6 +40,9 @@
           <div class="bag__summery__total">
             Total: <span>{{ summeryCost }} RUB</span>
           </div>
+          <button class="bag__summery__checkout" @click="checkout">
+            Checkout
+          </button>
         </div>
       </div>
     </transition>
@@ -50,22 +53,31 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 import ProductCardBag from './ProductCardBag'
 
 export default {
   name: 'Bag',
   computed: {
     products() {
-      return this.$store.state.bagItems
+      return this.$store.state.bag
     },
     summeryCost() {
       return this.products.reduce((acc, item) => acc + item.price * item.count, 0).toLocaleString()
     }
   },
+  methods: {
+    checkout() {
+      this.$store.commit('toggleBag')
+      setTimeout(() => {
+        this.$store.commit('setBag', [])
+      }, 800)
+    }
+  },
   watch: {
     products: {
-      get(val) {
-        console.log(val)
+      handler: val => {
         localStorage.setItem('_nuxtBag', JSON.stringify(val))
       },
       deep: true
@@ -233,15 +245,53 @@ export default {
 
       &__total {
         display: flex;
+        width: 100%;
         justify-content: space-between;
         align-items: center;
         text-transform: uppercase;
         color: rgb(163, 163, 163);
+        margin-bottom: 1.5rem;
 
         span {
           color: black;
           font-size: 1.5rem;
           font-weight: 600;
+        }
+      }
+
+      &__checkout {
+        width: 100%;
+        padding: 0.5rem 0.5rem;
+        text-align: center;
+        appearance: none;
+        background: black;
+        color: white;
+        font: inherit;
+        font-weight: 600;
+        font-size: 1.1rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        border: none;
+        border-radius: 999px;
+        cursor: pointer;
+        position: relative;
+        z-index: 1;
+
+        &:hover::after {
+          transform: scaleX(1.03) scaleY(1.22);
+        }
+
+        &::after {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          border: 2px solid black;
+          border-radius: 999px;
+          z-index: -1;
+          transition: transform 300ms ease-out;
         }
       }
     }

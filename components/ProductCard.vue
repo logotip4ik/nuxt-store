@@ -87,6 +87,7 @@ export default {
       opacity: 0;
       pointer-events: none;
       transition: opacity $transitionDuration ease-in-out;
+      border-radius: $borderRadius;
 
       a {
         color: black;

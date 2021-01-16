@@ -144,13 +144,15 @@ export default {
     }
   },
   methods: {
+    // ...mapActions(['addItemToBag'])
     addToBag() {
-      this.$store.dispatch('addItemToBag', {
-        product: this.product,
+      const item = {
+        ...this.product,
         slug: this.slug,
         size: this.product.sizes[this.currSize],
         count: this.productCount
-      })
+      }
+      this.$store.dispatch('addItemToBag', { item })
     },
     addProduct() {
       if (this.productCount === 99) return

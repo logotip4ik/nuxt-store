@@ -12,43 +12,47 @@ const whiteListTypes = ['t-shirts', 'hoodie', 'sweatshirts']
 
 export const state = () => ({
   storeItems: [],
-  bagItems: [],
+  bag: [],
   showBag: false
 })
+
+export const getters = {
+  bag: state => state.bag
+}
 
 export const mutations = {
   [SET_STORE_ITEMS](state, list) {
     state.storeItems = list
   },
-  [ADD_ITEM_TO_BAG](state, itemToAdd) {
-    for (let i = 0; i < state.bagItems.length; i++) {
-      const item = state.bagItems[i]
+  [ADD_ITEM_TO_BAG](state, { item: itemToAdd }) {
+    for (let i = 0; i < state.bag.length; i++) {
+      const item = state.bag[i]
       if (item.slug === itemToAdd.slug) {
-        item.count = item.count + 1
+        item.count = item.count + itemToAdd.count
         return
       }
     }
-    state.bagItems.push(itemToAdd)
+    state.bag = [...state.bag, itemToAdd]
   },
   [ADD_COUNT_TO_ITEM_BAG](state, slug) {
-    for (let i = 0; i < state.bagItems.length; i++) {
-      const item = state.bagItems[i]
+    for (let i = 0; i < state.bag.length; i++) {
+      const item = state.bag[i]
       if (item.slug === slug && item.count !== 99) {
         item.count = item.count + 1
       }
     }
   },
   [MINUS_COUNT_TO_ITEM_BAG](state, slug) {
-    for (let i = 0; i < state.bagItems.length; i++) {
-      const item = state.bagItems[i]
+    for (let i = 0; i < state.bag.length; i++) {
+      const item = state.bag[i]
       if (item.slug === slug && item.count !== 1) {
         item.count = item.count - 1
       }
     }
   },
   [CHANGE_SIZE_TO_ITEM_BAG](state, { slug, size }) {
-    for (let i = 0; i < state.bagItems.length; i++) {
-      const item = state.bagItems[i]
+    for (let i = 0; i < state.bag.length; i++) {
+      const item = state.bag[i]
       if (item.slug === slug) {
         item.size = size
       }
@@ -58,14 +62,10 @@ export const mutations = {
     state.showBag = !state.showBag
   },
   [REMOVE_ITEM_FROM_BAG](state, slug) {
-    state.bagItems = state.bagItems.filter(item => item.slug !== slug)
+    state.bag = state.bag.filter(item => item.slug !== slug)
   },
   setBag(state, bag) {
-    console.log({ bag, state })
-    // TODO: add items to bag
-    // BUG: This don't work
-    // state.bagItems.push(...bag)
-    // console.log(state.bagItems)
+    state.bag = bag
   }
 }
 
@@ -75,8 +75,8 @@ export const actions = {
       commit('setBag', newBag)
     }
   },
-  addItemToBag({ commit }, { product, count, size, slug }) {
-    commit(ADD_ITEM_TO_BAG, { ...product, count, size, slug })
+  addItemToBag({ commit }, item) {
+    commit(ADD_ITEM_TO_BAG, item)
     commit(TOGGLE_BAG)
   },
   getNewProducts({ state }) {
