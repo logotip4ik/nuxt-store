@@ -1,0 +1,18 @@
+{
+  "new": true,
+  "density": "400 g/m²",
+  "price": 2400,
+  "slug": 17,
+  "sizes": [
+    "S",
+    "M",
+    "L",
+    "XL"
+  ],
+  "structure": "45% cotton, 55% polyester",
+  "title": "Hoodie O'Three",
+  "type": "hoodie",
+  "image": "/img/grey-hoodie.png",
+  "description": "Just test hoodie with custom image. How it will perform and show shadow on image",
+  "black": false
+}
