@@ -1,1 +1,17 @@
-{"title": "sweatshirts 9", "description": "Blue wear like beat point. Trouble east must teach region place with. Arrive why campaign amount cultural measure maybe piece. Throw someone discover work risk. Agency however lose. Hotel exactly national offer window present save.", "type": "sweatshirts", "image": "/img/boilerplate.png", "price": 2739, "black": false, "structure": "56% cotton, 48% polyester", "density": "349 \u0433/\u043c\u00b2", "sizes": ["S", "M", "L"]}
+{
+  "new": false,
+  "density": "349 г/м²",
+  "price": 2740,
+  "slug": 9,
+  "sizes": [
+    "S",
+    "M",
+    "L"
+  ],
+  "structure": "56% cotton, 48% polyester",
+  "title": "sweatshirts 9",
+  "type": "sweatshirts",
+  "image": "/img/boilerplate.png",
+  "description": "Blue wear like beat point. Trouble east must teach region place with. Arrive why campaign amount cultural measure maybe piece. Throw someone discover work risk. Agency however lose. Hotel exactly national offer window present save.",
+  "black": false
+}
