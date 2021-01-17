@@ -1,1 +1,20 @@
-{"title": "hoodie 15", "description": "Take fire public short. Ahead affect church possible himself. Prepare appear song another strong ever. Nearly central mission.", "type": "hoodie", "image": "/img/boilerplate.png", "price": 1813, "black": true, "structure": "59% cotton, 60% polyester", "density": "320 \u0433/\u043c\u00b2", "sizes": ["S", "M", "L", "XL", "2XL", "3XL"]}
+{
+  "new": false,
+  "density": "320 г/м²",
+  "price": 1815,
+  "slug": 15,
+  "sizes": [
+    "S",
+    "M",
+    "L",
+    "XL",
+    "2XL",
+    "3XL"
+  ],
+  "structure": "59% cotton, 60% polyester",
+  "title": "hoodie 15",
+  "type": "hoodie",
+  "image": "/img/boilerplate.png",
+  "description": "Take fire public short. Ahead affect church possible himself. Prepare appear song another strong ever. Nearly central mission.",
+  "black": true
+}
