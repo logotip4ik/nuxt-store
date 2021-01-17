@@ -1,1 +1,19 @@
-{"title": "sweatshirts 14", "description": "Citizen detail experience perhaps test spend. About term part although growth among. Trouble rather drug.", "type": "sweatshirts", "image": "/img/boilerplate.png", "price": 2383, "black": true, "structure": "58% cotton, 60% polyester", "density": "312 \u0433/\u043c\u00b2", "sizes": ["S", "M", "L", "XL", "2XL"]}
+{
+  "new": true,
+  "density": "312 г/м²",
+  "price": 2383,
+  "slug": 14,
+  "sizes": [
+    "S",
+    "M",
+    "L",
+    "XL",
+    "2XL"
+  ],
+  "structure": "58% cotton, 60% polyester",
+  "title": "sweatshirts 14",
+  "type": "sweatshirts",
+  "image": "/img/boilerplate.png",
+  "description": "Citizen detail experience perhaps test spend. About term part although growth among. Trouble rather drug.",
+  "black": true
+}
