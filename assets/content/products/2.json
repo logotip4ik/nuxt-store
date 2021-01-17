@@ -1,1 +1,19 @@
-{"title": "t-shirt 2", "description": "Citizen walk among room sort attorney. Involve morning conference plan. Treat day course language.", "type": "t-shirts", "image": "/img/boilerplate.png", "price": 2363, "black": true, "structure": "45% cotton, 41% polyester", "density": "346 \u0433/\u043c\u00b2", "sizes": ["S", "M", "L", "XL", "2XL"]}
+{
+  "new": false,
+  "density": "346 г/м²",
+  "price": 2350,
+  "slug": 2,
+  "sizes": [
+    "S",
+    "M",
+    "L",
+    "XL",
+    "2XL"
+  ],
+  "structure": "45% cotton, 41% polyester",
+  "title": "t-shirt 2",
+  "type": "t-shirts",
+  "image": "/img/boilerplate.png",
+  "description": "Citizen walk among room sort attorney. Involve morning conference plan. Treat day course language.",
+  "black": true
+}
