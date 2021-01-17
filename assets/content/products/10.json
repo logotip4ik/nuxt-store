@@ -1,1 +1,18 @@
-{"title": "hoodie 10", "description": "Receive hear figure meet adult build. East group behavior son full. Financial explain figure garden accept catch. Executive rest challenge fear PM.", "type": "hoodie", "new": true, "image": "/img/boilerplate.png", "price": 2053, "black": false, "structure": "45% cotton, 55% polyester", "density": "329 \u0433/\u043c\u00b2", "sizes": ["S", "M", "L", "XL"]}
+{
+  "new": true,
+  "density": "329 г/м²",
+  "price": 2055,
+  "slug": 10,
+  "sizes": [
+    "S",
+    "M",
+    "L",
+    "XL"
+  ],
+  "structure": "45% cotton, 55% polyester",
+  "title": "hoodie 10",
+  "type": "hoodie",
+  "image": "/img/boilerplate.png",
+  "description": "Receive hear figure meet adult build. East group behavior son full. Financial explain figure garden accept catch. Executive rest challenge fear PM.",
+  "black": false
+}
