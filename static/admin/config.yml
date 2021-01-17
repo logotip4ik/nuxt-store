@@ -59,7 +59,13 @@ collections:
               { label: 'Hoodie', value: 'hoodie' },
             ],
         }
-      - { label: 'Image', name: 'image', widget: 'string' }
+      - {
+          label: 'Image',
+          name: 'image',
+          widget: 'image',
+          default: '/static/img/boilerplate.png',
+          allow_multiple: false,
+        }
       - { label: 'Price', name: 'price', widget: 'number', value_type: 'int', min: 1, max: 90000 }
       - { label: 'Black', name: 'black', widget: 'boolean', default: false }
       - { label: 'New', name: 'new', widget: 'boolean', default: true }

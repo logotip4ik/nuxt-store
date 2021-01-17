@@ -1,17 +1,1 @@
-{
-  "new": true,
-  "density": "330 г/м²",
-  "price": 1050,
-  "sizes": [
-    "S",
-    "M",
-    "L",
-    "XL"
-  ],
-  "structure": "51% cotton, 41% polyester",
-  "title": "Updated T-shirt",
-  "type": "t-shirts",
-  "image": "https://via.placeholder.com/400",
-  "description": "Piece term each money choice imagine. Couple member similar. Organization view small meeting forget character eight so. Bad population against one training president.",
-  "black": false
-}
+{"new": true, "density": "330 \u0433/\u043c\u00b2", "price": 1050, "sizes": ["S", "M", "L", "XL"], "structure": "51% cotton, 41% polyester", "title": "Updated T-shirt", "type": "t-shirts", "image": "/img/boilerplate.png", "description": "Piece term each money choice imagine. Couple member similar. Organization view small meeting forget character eight so. Bad population against one training president.", "black": false}
