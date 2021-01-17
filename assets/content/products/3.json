@@ -1,1 +1,19 @@
-{"title": "t-shirt 3", "description": "Voice star team edge. Peace take talk really yeah. Certain sure store stock. Yard woman set how.", "type": "t-shirts", "new": true, "image": "/img/boilerplate.png", "price": 2245, "black": true, "structure": "58% cotton, 44% polyester", "density": "334 \u0433/\u043c\u00b2", "sizes": ["S", "M", "L", "XL", "2XL"]}
+{
+  "new": false,
+  "density": "334 г/м²",
+  "price": 2245,
+  "slug": 3,
+  "sizes": [
+    "S",
+    "M",
+    "L",
+    "XL",
+    "2XL"
+  ],
+  "structure": "58% cotton, 44% polyester",
+  "title": "t-shirt 3",
+  "type": "t-shirts",
+  "image": "/img/boilerplate.png",
+  "description": "Voice star team edge. Peace take talk really yeah. Certain sure store stock. Yard woman set how.",
+  "black": true
+}
