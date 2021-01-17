@@ -1,1 +1,18 @@
-{"title": "sweatshirts 6", "description": "Person money leave. Look table Mrs radio per. Difference financial be some heart. Nothing second source show hour trade.", "type": "sweatshirts", "image": "/img/boilerplate.png", "price": 1651, "black": false, "structure": "51% cotton, 49% polyester", "density": "325 \u0433/\u043c\u00b2", "sizes": ["S", "M", "L", "XL"]}
+{
+  "new": true,
+  "density": "325 г/м²",
+  "price": 1650,
+  "slug": 6,
+  "sizes": [
+    "S",
+    "M",
+    "L",
+    "XL"
+  ],
+  "structure": "51% cotton, 49% polyester",
+  "title": "sweatshirts 6",
+  "type": "sweatshirts",
+  "image": "/img/boilerplate.png",
+  "description": "Person money leave. Look table Mrs radio per. Difference financial be some heart. Nothing second source show hour trade.",
+  "black": false
+}
