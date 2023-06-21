@@ -18,7 +18,7 @@
     "@nuxt/webpack": "^2.14.12",
     "@nuxtjs/markdownit": "^1.2.6",
     "css.escape": "^1.5.1",
-    "nuxt": "^2.14.12"
+    "nuxt": "^3.4.3"
   },
   "devDependencies": {
     "@nuxtjs/pwa": "^3.3.2",
